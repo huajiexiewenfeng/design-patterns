@@ -1,5 +1,6 @@
-package com.csdn.design.patterns.theory.combat.mvc.service;
+package com.csdn.design.patterns.theory.combat.ddd.service;
 
+import com.csdn.design.patterns.theory.combat.ddd.domain.VirtualWallet;
 import com.csdn.design.patterns.theory.combat.mvc.contants.TransactionType;
 import com.csdn.design.patterns.theory.combat.mvc.dao.VirtualWalletRepository;
 import com.csdn.design.patterns.theory.combat.mvc.dao.VirtualWalletTransactionRepository;
@@ -13,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @Author: xiewenfeng
- * @Date: 2022/2/10 10:32
+ * @Date: 2022/2/10 11:26
  */
 @Service
 public class VirtualWalletService {
@@ -24,9 +25,9 @@ public class VirtualWalletService {
   @Autowired
   private VirtualWalletTransactionRepository transactionRepository;
 
-  public VirtualWalletBo getVirtualWallet(Long walletId) {
+  public VirtualWallet getVirtualWallet(Long walletId) {
     VirtualWalletEntity walletEntity = walletRepository.getWalletEntity(walletId);
-    return VirtualWalletEntity.convert(walletEntity);
+    return VirtualWalletEntity.convertToVirtualWallet(walletEntity);
   }
 
   public BigDecimal getBalance(Long walletId) {
@@ -35,12 +36,10 @@ public class VirtualWalletService {
 
   @Transactional(rollbackFor = Exception.class)
   public void debit(Long walletId, BigDecimal amount) {
-    // 获取钱包余额
+    // 获取钱包
     VirtualWalletEntity walletEntity = walletRepository.getWalletEntity(walletId);
-    BigDecimal balance = walletEntity.getBalance();
-    if (balance.compareTo(amount) < 0) {
-      throw new RuntimeException("...");
-    }
+    VirtualWallet wallet = VirtualWalletEntity.convertToVirtualWallet(walletEntity);
+    wallet.debit(amount);
     // 封装交易对象
     VirtualWalletTransactionEntity transactionEntity = VirtualWalletTransactionEntity.builder()
         .amount(amount)
@@ -49,11 +48,15 @@ public class VirtualWalletService {
     // 保存交易
     transactionRepository.saveTranscation(transactionEntity);
     // 更新余额
-    walletRepository.updateBalance(walletId, balance.subtract(amount));
+    walletRepository.updateBalance(walletId, wallet.balance());
   }
 
   @Transactional(rollbackFor = Exception.class)
   public void credit(Long walletId, BigDecimal amount) {
+    // 获取钱包
+    VirtualWalletEntity walletEntity = walletRepository.getWalletEntity(walletId);
+    VirtualWallet wallet = VirtualWalletEntity.convertToVirtualWallet(walletEntity);
+    wallet.credit(amount);
     // 封装交易对象
     VirtualWalletTransactionEntity transactionEntity = VirtualWalletTransactionEntity.builder()
         .amount(amount)
@@ -61,11 +64,17 @@ public class VirtualWalletService {
             TransactionType.CREDIT.name()).build();
     // 保存交易
     transactionRepository.saveTranscation(transactionEntity);
-    VirtualWalletEntity walletEntity = walletRepository.getWalletEntity(walletId);
     // 更新余额
-    walletRepository.updateBalance(walletId, walletEntity.getBalance().add(amount));
+    walletRepository.updateBalance(walletId, wallet.balance());
   }
 
+  /**
+   * 与贫血模型的代码一样
+   *
+   * @param fromWalletId
+   * @param toWalletId
+   * @param amount
+   */
   @Transactional(rollbackFor = Exception.class)
   public void transfer(Long fromWalletId, Long toWalletId, BigDecimal amount) {
     // 封装交易对象
