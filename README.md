@@ -18,3 +18,6 @@
   * 里式替换原则 LSP
   * 接口隔离原则 ISP
   * 依赖反转原则 DIP
+  * KISS 原则 & YAGNI 原则
+  * DRY 原则
+  * 迪米特法则 LOD
