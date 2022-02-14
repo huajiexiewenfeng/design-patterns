@@ -1,4 +1,4 @@
-package com.csdn.design.patterns.thinking.specifications.test;
+package com.csdn.design.patterns.thinking.specifications.test.text;
 
 import org.springframework.util.ObjectUtils;
 
