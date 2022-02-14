@@ -1,6 +1,7 @@
 package com.csdn.design.patterns.thinking.oop.wallet.ddd.v2;
 
 import java.math.BigDecimal;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 /**
@@ -10,6 +11,7 @@ import lombok.Builder;
  * @Date: 2022/2/10 10:30
  */
 @Builder
+@AllArgsConstructor
 public class VirtualWallet {
 
   private Long id;

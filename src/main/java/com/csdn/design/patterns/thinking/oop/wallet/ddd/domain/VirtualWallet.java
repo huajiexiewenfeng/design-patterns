@@ -1,12 +1,16 @@
 package com.csdn.design.patterns.thinking.oop.wallet.ddd.domain;
 
 import java.math.BigDecimal;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 /**
  * @Author: xiewenfeng
  * @Date: 2022/2/10 10:30
  */
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class VirtualWallet {
 

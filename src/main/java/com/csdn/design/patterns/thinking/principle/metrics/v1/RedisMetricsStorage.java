@@ -1,6 +1,7 @@
 package com.csdn.design.patterns.thinking.principle.metrics.v1;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * redis 统计存储实现
@@ -22,7 +23,7 @@ public class RedisMetricsStorage implements MetricsStorage {
   }
 
   @Override
-  public List<RequestInfo> getRequestInfos(long startTimeInMillis, long endTimeInMillis) {
+  public Map<String, List<RequestInfo>> getRequestInfos(long startTimeInMillis, long endTimeInMillis) {
     return null;
   }
 }
