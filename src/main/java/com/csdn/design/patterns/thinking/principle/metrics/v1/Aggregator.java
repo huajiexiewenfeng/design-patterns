@@ -35,17 +35,14 @@ public class Aggregator {
     }
     long tps = count / durationInMillis * 1000;
     // 按照返回时间排序
-    Collections.sort(requestInfos, new Comparator<RequestInfo>() {
-      @Override
-      public int compare(RequestInfo o1, RequestInfo o2) {
-        double diff = o1.getResponseTime() - o2.getResponseTime();
-        if (diff < 0.0) {
-          return -1;
-        } else if (diff > 0.0) {
-          return 1;
-        } else {
-          return 0;
-        }
+    Collections.sort(requestInfos, (o1, o2) -> {
+      double diff = o1.getResponseTime() - o2.getResponseTime();
+      if (diff < 0.0) {
+        return -1;
+      } else if (diff > 0.0) {
+        return 1;
+      } else {
+        return 0;
       }
     });
     int idx999 = (int) (count * 0.999);
