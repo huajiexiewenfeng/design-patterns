@@ -1,6 +1,7 @@
 package com.csdn.design.patterns.thinking.principle.metrics.v3;
 
 import com.csdn.design.patterns.thinking.principle.metrics.v1.MetricsStorage;
+import com.csdn.design.patterns.thinking.principle.metrics.v1.RedisMetricsStorage;
 import com.csdn.design.patterns.thinking.principle.metrics.v1.RequestInfo;
 import com.google.common.eventbus.AsyncEventBus;
 import com.google.common.eventbus.EventBus;
@@ -20,6 +21,10 @@ public class MetricsCollector {
   public MetricsCollector(
       MetricsStorage metricsStorage) {
     this(metricsStorage, DEFAULT_STORAGE_THREAD_POOL_SIZE);
+  }
+
+  public MetricsCollector() {
+    this(new RedisMetricsStorage());
   }
 
   public MetricsCollector(MetricsStorage metricsStorage, int threadNumToSaveData) {
