@@ -24,13 +24,18 @@ public class EmailViewer implements StatViewer {
     this.emailSender = emailSender;
   }
 
+  public EmailViewer(List<String> emailToAddresses) {
+    this.emailSender = new EmailSender();
+    this.toAddress = emailToAddresses;
+  }
+
   public void addToAddress(String address) {
     this.toAddress.add(address);
   }
 
   @Override
   public void output(Map<String, RequestStat> stats, long startTimeInMillis, long endTimeInMillis) {
-     // format the requestStats to HTML style.
+    // format the requestStats to HTML style.
     // send it to email toAddresses.
   }
 }
