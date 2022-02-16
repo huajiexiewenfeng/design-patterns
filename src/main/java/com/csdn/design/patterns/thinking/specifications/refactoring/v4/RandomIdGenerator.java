@@ -1,5 +1,6 @@
 package com.csdn.design.patterns.thinking.specifications.refactoring.v4;
 
+import com.csdn.design.patterns.thinking.specifications.refactoring.exception.IdGenerationFailureException;
 import com.csdn.design.patterns.thinking.specifications.refactoring.v2.IdGenerator;
 import com.csdn.design.patterns.thinking.specifications.refactoring.v2.LogTraceIdGenerator;
 import com.google.common.annotations.VisibleForTesting;
@@ -102,7 +103,7 @@ public class RandomIdGenerator implements LogTraceIdGenerator {
     return new String(randomChars);
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IdGenerationFailureException {
     IdGenerator idGenerator = new RandomIdGenerator();
     System.out.println(idGenerator.generate());
     System.out.println(idGenerator.generate());
