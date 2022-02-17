@@ -12,6 +12,6 @@ public class DemoB {
   }
 
   public static void main(String[] args) {
-    new DemoB(new BAdaptor(new B()))
+    new DemoB(new BAdaptor(new B()));
   }
 }
