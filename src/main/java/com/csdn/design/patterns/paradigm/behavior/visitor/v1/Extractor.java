@@ -1,8 +1,5 @@
 package com.csdn.design.patterns.paradigm.behavior.visitor.v1;
 
-import com.csdn.design.patterns.paradigm.behavior.visitor.PPTFile;
-import com.csdn.design.patterns.paradigm.behavior.visitor.PdfFile;
-import com.csdn.design.patterns.paradigm.behavior.visitor.WordFile;
 
 /**
  * @Author: xiewenfeng
