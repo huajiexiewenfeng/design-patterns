@@ -2,8 +2,8 @@ package com.csdn.design.patterns.project.ratelimiter;
 
 import com.csdn.design.patterns.project.ratelimiter.alg.FixedTimeWinRateLimitAlg;
 import com.csdn.design.patterns.project.ratelimiter.alg.RateLimitAlg;
-import com.csdn.design.patterns.project.ratelimiter.datsource.FileRuleConfigSource;
-import com.csdn.design.patterns.project.ratelimiter.datsource.RuleConfigSource;
+import com.csdn.design.patterns.project.ratelimiter.datasource.FileRuleConfigSource;
+import com.csdn.design.patterns.project.ratelimiter.datasource.RuleConfigSource;
 import com.csdn.design.patterns.project.ratelimiter.rule.ApiLimit;
 import com.csdn.design.patterns.project.ratelimiter.rule.RuleConfig;
 import com.csdn.design.patterns.project.ratelimiter.rule.TrieRateLimitRule;

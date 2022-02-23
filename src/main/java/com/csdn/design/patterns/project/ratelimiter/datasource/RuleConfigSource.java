@@ -1,4 +1,4 @@
-package com.csdn.design.patterns.project.ratelimiter.datsource;
+package com.csdn.design.patterns.project.ratelimiter.datasource;
 
 import com.csdn.design.patterns.project.ratelimiter.rule.RuleConfig;
 

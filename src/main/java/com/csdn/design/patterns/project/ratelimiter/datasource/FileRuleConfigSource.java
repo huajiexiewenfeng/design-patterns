@@ -1,4 +1,4 @@
-package com.csdn.design.patterns.project.ratelimiter.datsource;
+package com.csdn.design.patterns.project.ratelimiter.datasource;
 
 import com.csdn.design.patterns.project.ratelimiter.parser.JsonRuleConfigParser;
 import com.csdn.design.patterns.project.ratelimiter.parser.RuleConfigParser;
@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.yaml.snakeyaml.Yaml;
 
 /**
  * @Author: xiewenfeng
